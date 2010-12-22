@@ -28,25 +28,16 @@ public:
     virtual void addChild(Component* c);
     virtual void removeChild(Component* c);
 
-    virtual std::map<std::string, Component*> children() const {
-        return _children;
-    }
-
+    virtual std::map<std::string, Component* > children() const;
     virtual std::string name() const;
-
-    virtual Component* parent() const {
-        return _parent;
-    }
-
-    virtual bool hasParent() const {
-        return 0 != _parent;
-    }
+    virtual Component* parent() const;
+    virtual bool hasParent() const;
 private:
     Component* _parent;
     std::string _name;
-    std::map<std::string, Component*> _children;
+    std::map<std::string, Component* > _children;
 };
-typedef std::map<std::string, Component*> ComponentMap;
+typedef std::map<std::string, Component* > ComponentMap;
 typedef ComponentMap::const_iterator ComponentMapConstIterator;
 
 #endif	/* JORM_COMPONENT_H */

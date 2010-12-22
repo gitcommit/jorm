@@ -20,3 +20,6 @@ InTableComponent::InTableComponent(const InTableComponent& orig)
 InTableComponent::~InTableComponent() {
 }
 
+Table* InTableComponent::table() const {
+    return dynamic_cast<Table*>(parent());
+}

@@ -35,14 +35,20 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Sequence.o \
 	${OBJECTDIR}/TableColumn.o \
+	${OBJECTDIR}/PreventValueConstraint.o \
 	${OBJECTDIR}/Schema.o \
+	${OBJECTDIR}/PrimaryKeyConstraint.o \
 	${OBJECTDIR}/InDatabaseComponent.o \
 	${OBJECTDIR}/DatabaseModel.o \
 	${OBJECTDIR}/InTableComponent.o \
 	${OBJECTDIR}/Component.o \
+	${OBJECTDIR}/UniqueConstraint.o \
 	${OBJECTDIR}/InSchemaComponent.o \
+	${OBJECTDIR}/CheckConstraint.o \
+	${OBJECTDIR}/ForeignKeyConstraint.o \
 	${OBJECTDIR}/Table.o \
-	${OBJECTDIR}/DataType.o
+	${OBJECTDIR}/DataType.o \
+	${OBJECTDIR}/TableConstraint.o
 
 
 # C Compiler Flags
@@ -79,10 +85,20 @@ ${OBJECTDIR}/TableColumn.o: TableColumn.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/TableColumn.o TableColumn.cpp
 
+${OBJECTDIR}/PreventValueConstraint.o: PreventValueConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/PreventValueConstraint.o PreventValueConstraint.cpp
+
 ${OBJECTDIR}/Schema.o: Schema.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Schema.o Schema.cpp
+
+${OBJECTDIR}/PrimaryKeyConstraint.o: PrimaryKeyConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/PrimaryKeyConstraint.o PrimaryKeyConstraint.cpp
 
 ${OBJECTDIR}/InDatabaseComponent.o: InDatabaseComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -104,10 +120,25 @@ ${OBJECTDIR}/Component.o: Component.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Component.o Component.cpp
 
+${OBJECTDIR}/UniqueConstraint.o: UniqueConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/UniqueConstraint.o UniqueConstraint.cpp
+
 ${OBJECTDIR}/InSchemaComponent.o: InSchemaComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/InSchemaComponent.o InSchemaComponent.cpp
+
+${OBJECTDIR}/CheckConstraint.o: CheckConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/CheckConstraint.o CheckConstraint.cpp
+
+${OBJECTDIR}/ForeignKeyConstraint.o: ForeignKeyConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/ForeignKeyConstraint.o ForeignKeyConstraint.cpp
 
 ${OBJECTDIR}/Table.o: Table.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -118,6 +149,11 @@ ${OBJECTDIR}/DataType.o: DataType.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DataType.o DataType.cpp
+
+${OBJECTDIR}/TableConstraint.o: TableConstraint.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/TableConstraint.o TableConstraint.cpp
 
 # Subprojects
 .build-subprojects:

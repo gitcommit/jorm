@@ -11,8 +11,8 @@
 
 Component::Component(Component* p)
 : _parent(p), _name("") {
-   setParent(_parent);
-   setName("");
+    setParent(_parent);
+    setName("");
 }
 
 Component::Component(Component* p, const std::string& name)
@@ -52,7 +52,6 @@ void Component::setParent(Component* p) {
     }
     _parent = p;
     if (0 != _parent) {
-        std::cout << "adding " << *this << " to " << *(parent()) << std::endl;
         _parent->addChild(this);
     }
 }
@@ -63,7 +62,7 @@ void Component::addChild(Component* c) {
 
 void Component::removeChild(Component* c) {
     ComponentMap::const_iterator delCand = _children.find(c->name());
-    
+
     for (ComponentMapConstIterator i = _children.begin(); i != _children.end(); ++i) {
         std::cout << i->first << ": " << i->second;
     }
@@ -76,7 +75,19 @@ void Component::printOn(std::ostream& strm) {
     strm << name();
 }
 
-std::ostream& operator<<(std::ostream& s, Component& c) {
+std::map<std::string, Component*> Component::children() const {
+    return _children;
+}
+
+Component* Component::parent() const {
+    return _parent;
+}
+
+bool Component::hasParent() const {
+    return (0 != _parent);
+}
+
+std::ostream & operator<<(std::ostream& s, Component& c) {
     c.printOn(s);
     return s;
 }

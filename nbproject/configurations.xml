@@ -27,18 +27,26 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>CheckConstraint.cpp</itemPath>
+    <itemPath>CheckConstraint.h</itemPath>
     <itemPath>Component.cpp</itemPath>
     <itemPath>Component.h</itemPath>
     <itemPath>DataType.cpp</itemPath>
     <itemPath>DataType.h</itemPath>
     <itemPath>DatabaseModel.cpp</itemPath>
     <itemPath>DatabaseModel.h</itemPath>
+    <itemPath>ForeignKeyConstraint.cpp</itemPath>
+    <itemPath>ForeignKeyConstraint.h</itemPath>
     <itemPath>InDatabaseComponent.cpp</itemPath>
     <itemPath>InDatabaseComponent.h</itemPath>
     <itemPath>InSchemaComponent.cpp</itemPath>
     <itemPath>InSchemaComponent.h</itemPath>
     <itemPath>InTableComponent.cpp</itemPath>
     <itemPath>InTableComponent.h</itemPath>
+    <itemPath>PreventValueConstraint.cpp</itemPath>
+    <itemPath>PreventValueConstraint.h</itemPath>
+    <itemPath>PrimaryKeyConstraint.cpp</itemPath>
+    <itemPath>PrimaryKeyConstraint.h</itemPath>
     <itemPath>RegisterBoostTypes.h</itemPath>
     <itemPath>Schema.cpp</itemPath>
     <itemPath>Schema.h</itemPath>
@@ -48,6 +56,10 @@
     <itemPath>Table.h</itemPath>
     <itemPath>TableColumn.cpp</itemPath>
     <itemPath>TableColumn.h</itemPath>
+    <itemPath>TableConstraint.cpp</itemPath>
+    <itemPath>TableConstraint.h</itemPath>
+    <itemPath>UniqueConstraint.cpp</itemPath>
+    <itemPath>UniqueConstraint.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

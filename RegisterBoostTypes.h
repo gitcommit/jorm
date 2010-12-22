@@ -22,6 +22,9 @@
 #include "Sequence.h"
 #include "Table.h"
 #include "TableColumn.h"
+#include "PrimaryKeyConstraint.h"
+#include "UniqueConstraint.h"
+#include "PreventValueConstraint.h"
 
 BOOST_TYPEOF_REGISTER_TYPE(Component)
 BOOST_TYPEOF_REGISTER_TYPE(DatabaseModel)
@@ -29,8 +32,11 @@ BOOST_TYPEOF_REGISTER_TYPE(Schema)
 BOOST_TYPEOF_REGISTER_TYPE(DataType)
 BOOST_TYPEOF_REGISTER_TYPE(Schema)
 BOOST_TYPEOF_REGISTER_TYPE(Table)
-BOOST_TYPEOF_REGISTER_TYPE(TableColumn
-        )
+BOOST_TYPEOF_REGISTER_TYPE(TableColumn)
+BOOST_TYPEOF_REGISTER_TYPE(TableConstraint)
+BOOST_TYPEOF_REGISTER_TYPE(PrimaryKeyConstraint)
+BOOST_TYPEOF_REGISTER_TYPE(UniqueConstraint)
+BOOST_TYPEOF_REGISTER_TYPE(PreventValueConstraint)
 /*void test() {
 
     ComponentMap mp;

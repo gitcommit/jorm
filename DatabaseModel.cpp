@@ -58,3 +58,19 @@ DataType* DatabaseModel::dataType(const std::string& name) {
     }
     return i->second;
 }
+
+void DatabaseModel::addChild(Table* t) {
+    _tables.insert(std::make_pair(t->qualifiedName(), t));
+}
+
+void DatabaseModel::addChild(TableColumn* c) {
+    _tableColumns.insert(std::make_pair(c->namePath(), c));
+}
+
+TableMap DatabaseModel::tables() const {
+    return _tables;
+}
+
+TableColumnMap DatabaseModel::tableColumns() const {
+    return _tableColumns;
+}

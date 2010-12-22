@@ -27,6 +27,7 @@ void Schema::addChild(Sequence* s) {
 
 void Schema::addChild(Table* t) {
     _tables.insert(std::make_pair(t->name(), t));
+    databaseModel()->addChild(t);
 }
 
 SequenceMap Schema::sequences() const {
@@ -43,6 +44,15 @@ Table* Schema::table(const std::string& name) {
         return 0;
     }
     return i->second;
+}
+
+void Schema::addChild(TableColumn* c) {
+    _columns.insert(std::make_pair(c->qualifiedName(), c));
+    databaseModel()->addChild(c);
+}
+
+TableColumnMap Schema::tableColumns() const {
+    return _columns;
 }
 /*std::ostream& operator<<(std::ostream& s, Schema& c) {
     c.printOn(s);

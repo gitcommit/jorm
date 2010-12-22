@@ -7,6 +7,7 @@
 
 #include "TableColumn.h"
 
+#include "Schema.h"
 #include "Table.h"
 #include "DataType.h"
 
@@ -25,4 +26,12 @@ TableColumn::~TableColumn() {
 
 void TableColumn::printOn(std::ostream& strm) {
     strm << name() << " " << dataType()->sqlName();
+}
+
+std::string TableColumn::qualifiedName() const {
+    return table()->name() + "." + name();
+}
+
+std::string TableColumn::namePath() const {
+    return table()->schema()->name() + "." + qualifiedName();
 }

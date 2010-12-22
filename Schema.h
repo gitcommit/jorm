@@ -22,12 +22,15 @@ public:
     virtual ~Schema();
     void addChild(Sequence* s);
     void addChild(Table* t);
+    void addChild(TableColumn* c);
     SequenceMap sequences() const;
     TableMap tables() const;
+    TableColumnMap tableColumns() const;
     Table* table(const std::string& name);
 private:
     SequenceMap _sequences;
     TableMap _tables;
+    TableColumnMap _columns;
 };
 typedef std::map<std::string, Schema*> SchemaMap;
 typedef SchemaMap::const_iterator SchemaMapConstIterator;

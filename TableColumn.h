@@ -21,12 +21,16 @@ public:
     DataType* dataType() const { return _dataType; }
     bool hasDataType() const { return (0 != _dataType); }
     virtual void printOn(std::ostream& strm);
+    virtual std::string qualifiedName() const;
+    virtual std::string namePath() const;
 private:
     DataType* _dataType;
 };
 
 typedef std::map<std::string, TableColumn*> TableColumnMap;
 typedef TableColumnMap::const_iterator TableColumnMapConstIterator;
+typedef std::map<TableColumn*, TableColumn*> TableColumnPairMap;
+typedef TableColumnPairMap::const_iterator TableColumnPairMapConstIterator;
 
 #endif	/* TABLECOLUMN_H */
 
