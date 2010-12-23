@@ -23,6 +23,8 @@ public:
     virtual void printOn(std::ostream& strm);
     virtual std::string qualifiedName() const;
     virtual std::string namePath() const;
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
+    virtual std::string toString() const;
 private:
     DataType* _dataType;
 };

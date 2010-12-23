@@ -12,6 +12,8 @@
 
 #include "TableColumn.h"
 
+#include <vector>
+
 class ForeignKeyConstraint: public TableConstraint {
 public:
     ForeignKeyConstraint(Table* t, const std::string& name, Table* otherT);
@@ -21,6 +23,11 @@ public:
     Table* referencedTable() const;
     void add(TableColumn* local, TableColumn* referenced);
     TableColumnPairMap columnPairs() const { return _columnPairs; }
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
+    virtual std::vector<TableColumn*> referencedTableColumns() const;
+    virtual std::vector<std::string> referencedTableColumnNames() const;
+    virtual std::string joinedReferencedTableColumnNames(const std::string& sep = ", ") const;
+    virtual std::string toString() const;
 private:
     Table* _referencedTable;
     TableColumnPairMap _columnPairs;

@@ -8,6 +8,7 @@
 #include "DataType.h"
 
 #include "DatabaseModel.h"
+#include "ComponentVisitor.h"
 
 DataType::DataType(DatabaseModel* m, const std::string& n, const std::string& sqlN)
 : InDatabaseComponent(m, n), _sqlName(sqlN) {
@@ -21,3 +22,10 @@ DataType::DataType(const DataType& orig)
 DataType::~DataType() {
 }
 
+std::vector<std::string> DataType::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}
+
+std::string DataType::toString() const {
+    return "Name: " + name() + " SQL: " + sqlName();
+}

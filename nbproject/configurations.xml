@@ -31,10 +31,14 @@
     <itemPath>CheckConstraint.h</itemPath>
     <itemPath>Component.cpp</itemPath>
     <itemPath>Component.h</itemPath>
+    <itemPath>ComponentVisitor.cpp</itemPath>
+    <itemPath>ComponentVisitor.h</itemPath>
     <itemPath>DataType.cpp</itemPath>
     <itemPath>DataType.h</itemPath>
     <itemPath>DatabaseModel.cpp</itemPath>
     <itemPath>DatabaseModel.h</itemPath>
+    <itemPath>DebuggerVisitor.cpp</itemPath>
+    <itemPath>DebuggerVisitor.h</itemPath>
     <itemPath>ForeignKeyConstraint.cpp</itemPath>
     <itemPath>ForeignKeyConstraint.h</itemPath>
     <itemPath>InDatabaseComponent.cpp</itemPath>

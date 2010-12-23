@@ -8,6 +8,7 @@
 #include "PrimaryKeyConstraint.h"
 
 #include "Table.h"
+#include "ComponentVisitor.h"
 
 PrimaryKeyConstraint::PrimaryKeyConstraint(Table* t, const std::string& name)
 : TableConstraint(t, name){
@@ -21,3 +22,6 @@ PrimaryKeyConstraint::PrimaryKeyConstraint(const PrimaryKeyConstraint& orig)
 PrimaryKeyConstraint::~PrimaryKeyConstraint() {
 }
 
+std::vector<std::string> PrimaryKeyConstraint::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}

@@ -15,6 +15,7 @@ public:
     Sequence(Schema* s, const std::string& name);
     Sequence(const Sequence& orig);
     virtual ~Sequence();
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
 
 };

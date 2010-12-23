@@ -13,6 +13,7 @@
 #include "DatabaseModel.h"
 
 #include "Schema.h"
+#include "ComponentVisitor.h"
 
 #include <iostream>
 
@@ -73,4 +74,8 @@ TableMap DatabaseModel::tables() const {
 
 TableColumnMap DatabaseModel::tableColumns() const {
     return _tableColumns;
+}
+
+std::vector<std::string> DatabaseModel::visit(ComponentVisitor* v) {
+    return v->perform(this);
 }

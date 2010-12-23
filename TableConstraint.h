@@ -11,6 +11,8 @@
 #include "InTableComponent.h"
 #include "TableColumn.h"
 
+#include <vector>
+
 class TableConstraint: public InTableComponent {
 public:
     TableConstraint(Table* t, const std::string& name);
@@ -19,6 +21,9 @@ public:
     void addColumn(TableColumn* c);
     void addColumn(const std::string& name);
     TableColumnMap columns() const { return _columns; }
+    std::vector<std::string> columnNames() const;
+    std::string joinedColumnNames(const std::string& sep = ", ") const;
+    virtual std::string toString() const;
 private:
     TableColumnMap _columns;
 };

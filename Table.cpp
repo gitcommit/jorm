@@ -9,6 +9,7 @@
 
 #include "Table.h"
 #include "Schema.h"
+#include "ComponentVisitor.h"
 
 Table::Table(Schema* s, const std::string& name)
 : InSchemaComponent(s, name), _primaryKeyConstraint(0) {
@@ -83,4 +84,8 @@ ForeignKeyConstraint* Table::foreignKeyConstraint(const std::string& name) const
 
 std::string Table::qualifiedName() const {
     return schema()->name() + "." + name();
+}
+
+std::vector<std::string> Table::visit(ComponentVisitor* v) {
+    return v->perform(this);
 }

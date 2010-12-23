@@ -19,6 +19,8 @@ public:
     virtual ~DataType();
     void setSqlName(const std::string& n) { _sqlName = n; }
     std::string sqlName() const { return _sqlName; }
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
+    virtual std::string toString() const;
 private:
     std::string _sqlName;
 };

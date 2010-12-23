@@ -8,6 +8,7 @@
 #include "Sequence.h"
 
 #include "Schema.h"
+#include "ComponentVisitor.h"
 
 Sequence::Sequence(Schema* s, const std::string& name)
 : InSchemaComponent(s, name) {
@@ -21,3 +22,6 @@ Sequence::Sequence(const Sequence& orig)
 Sequence::~Sequence() {
 }
 
+std::vector<std::string> Sequence::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}

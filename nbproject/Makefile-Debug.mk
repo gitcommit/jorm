@@ -43,10 +43,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/InTableComponent.o \
 	${OBJECTDIR}/Component.o \
 	${OBJECTDIR}/UniqueConstraint.o \
+	${OBJECTDIR}/DebuggerVisitor.o \
 	${OBJECTDIR}/InSchemaComponent.o \
 	${OBJECTDIR}/CheckConstraint.o \
 	${OBJECTDIR}/ForeignKeyConstraint.o \
 	${OBJECTDIR}/Table.o \
+	${OBJECTDIR}/ComponentVisitor.o \
 	${OBJECTDIR}/DataType.o \
 	${OBJECTDIR}/TableConstraint.o
 
@@ -125,6 +127,11 @@ ${OBJECTDIR}/UniqueConstraint.o: UniqueConstraint.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/UniqueConstraint.o UniqueConstraint.cpp
 
+${OBJECTDIR}/DebuggerVisitor.o: DebuggerVisitor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DebuggerVisitor.o DebuggerVisitor.cpp
+
 ${OBJECTDIR}/InSchemaComponent.o: InSchemaComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -144,6 +151,11 @@ ${OBJECTDIR}/Table.o: Table.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Table.o Table.cpp
+
+${OBJECTDIR}/ComponentVisitor.o: ComponentVisitor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/ComponentVisitor.o ComponentVisitor.cpp
 
 ${OBJECTDIR}/DataType.o: DataType.cpp 
 	${MKDIR} -p ${OBJECTDIR}

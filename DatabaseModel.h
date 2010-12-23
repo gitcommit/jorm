@@ -27,6 +27,7 @@ public:
     TableMap tables() const;
     TableColumnMap tableColumns() const;
     DataType* dataType(const std::string& name);
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     SchemaMap _schemata;
     DataTypeMap _dataTypes;

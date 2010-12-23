@@ -17,6 +17,8 @@ public:
     virtual ~PreventValueConstraint();
     void setValue(const std::string& v);
     std::string value() const;
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
+    virtual std::string toString() const;
 private:
     std::string _value;
 };

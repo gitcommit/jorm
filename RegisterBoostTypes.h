@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
+#include <string>
 #include <boost/typeof/typeof.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -25,6 +27,9 @@
 #include "PrimaryKeyConstraint.h"
 #include "UniqueConstraint.h"
 #include "PreventValueConstraint.h"
+
+typedef std::vector<std::string> StringVector;
+typedef StringVector::const_iterator StringVectorConstIterator;
 
 BOOST_TYPEOF_REGISTER_TYPE(Component)
 BOOST_TYPEOF_REGISTER_TYPE(DatabaseModel)

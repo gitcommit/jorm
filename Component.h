@@ -9,8 +9,11 @@
 #define	JORM_COMPONENT_H
 
 #include <string>
-#include <ostream>
+#include <vector>
 #include <map>
+#include <ostream>
+
+class ComponentVisitor;
 
 class Component {
 public:
@@ -22,7 +25,7 @@ public:
 
     friend std::ostream & operator<<(std::ostream& s, Component& c);
     virtual void printOn(std::ostream& strm);
-
+    virtual std::string toString() const;
     virtual void setName(const std::string& name);
     virtual void setParent(Component* p);
     virtual void addChild(Component* c);
@@ -32,6 +35,7 @@ public:
     virtual std::string name() const;
     virtual Component* parent() const;
     virtual bool hasParent() const;
+    virtual std::vector<std::string> visit(ComponentVisitor* v) = 0;
 private:
     Component* _parent;
     std::string _name;

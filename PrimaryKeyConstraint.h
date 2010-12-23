@@ -15,6 +15,7 @@ public:
     PrimaryKeyConstraint(Table* t, const std::string& name);
     PrimaryKeyConstraint(const PrimaryKeyConstraint& orig);
     virtual ~PrimaryKeyConstraint();
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 };
 
 #endif	/* PRIMARYKEYCONSTRAINT_H */

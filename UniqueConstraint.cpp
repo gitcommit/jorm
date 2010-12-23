@@ -8,6 +8,7 @@
 #include "UniqueConstraint.h"
 
 #include "Table.h"
+#include "ComponentVisitor.h"
 
 UniqueConstraint::UniqueConstraint(Table* t, const std::string& name)
 : TableConstraint(t, name) {
@@ -21,3 +22,6 @@ UniqueConstraint::UniqueConstraint(const UniqueConstraint& orig)
 UniqueConstraint::~UniqueConstraint() {
 }
 
+std::vector<std::string> UniqueConstraint::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}

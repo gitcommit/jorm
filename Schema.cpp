@@ -8,6 +8,7 @@
 #include "Schema.h"
 
 #include "DatabaseModel.h"
+#include "ComponentVisitor.h"
 
 Schema::Schema(DatabaseModel* m, const std::string& n)
 : InDatabaseComponent(m, n) {
@@ -54,6 +55,11 @@ void Schema::addChild(TableColumn* c) {
 TableColumnMap Schema::tableColumns() const {
     return _columns;
 }
+
+std::vector<std::string> Schema::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}
+
 /*std::ostream& operator<<(std::ostream& s, Schema& c) {
     c.printOn(s);
     return s;

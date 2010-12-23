@@ -27,6 +27,7 @@ public:
     TableMap tables() const;
     TableColumnMap tableColumns() const;
     Table* table(const std::string& name);
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     SequenceMap _sequences;
     TableMap _tables;

@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include "ComponentVisitor.h"
+
 Component::Component(Component* p)
 : _parent(p), _name("") {
     setParent(_parent);
@@ -69,10 +71,7 @@ void Component::removeChild(Component* c) {
 }
 
 void Component::printOn(std::ostream& strm) {
-    if (hasParent()) {
-        strm << *(parent()) << ".";
-    }
-    strm << name();
+    strm << toString();
 }
 
 std::map<std::string, Component*> Component::children() const {
@@ -90,4 +89,14 @@ bool Component::hasParent() const {
 std::ostream & operator<<(std::ostream& s, Component& c) {
     c.printOn(s);
     return s;
+}
+
+std::string Component::toString() const {
+    std::string ret;
+    if (hasParent()) {
+        ret += parent()->toString() + ".";
+    }
+
+    ret += name();
+    return ret;
 }

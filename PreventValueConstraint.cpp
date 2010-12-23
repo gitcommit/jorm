@@ -8,6 +8,7 @@
 #include "PreventValueConstraint.h"
 
 #include "Table.h"
+#include "ComponentVisitor.h"
 
 PreventValueConstraint::PreventValueConstraint(Table* t, const std::string& name, const std::string& value)
 : CheckConstraint(t, name), _value(value) {
@@ -27,4 +28,12 @@ void PreventValueConstraint::setValue(const std::string& v) {
 
 std::string PreventValueConstraint::value() const {
     return _value;
+}
+
+std::vector<std::string> PreventValueConstraint::visit(ComponentVisitor* v) {
+    return v->perform(this);
+}
+
+std::string PreventValueConstraint::toString() const {
+    return name() + ": " + joinedColumnNames() + ": !" + value();
 }

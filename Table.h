@@ -40,6 +40,7 @@ public:
     PrimaryKeyConstraint* primaryKeyConstraint() const { return _primaryKeyConstraint; }
     ForeignKeyConstraint* foreignKeyConstraint(const std::string& name) const;
     virtual std::string qualifiedName() const;
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     TableColumnMap _columns;
     PrimaryKeyConstraint* _primaryKeyConstraint;

@@ -15,6 +15,7 @@ public:
     UniqueConstraint(Table* t, const std::string& name);
     UniqueConstraint(const UniqueConstraint& orig);
     virtual ~UniqueConstraint();
+    virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
 };
 
