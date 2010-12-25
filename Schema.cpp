@@ -80,3 +80,9 @@ Sequence* Schema::sequence(const std::string& name) {
     BOOST_ASSERT(_sequences.end() != i);
     return i->second;
 }
+
+ForeignKeyConstraint* Schema::addChild(ForeignKeyConstraint* c) {
+    _foreignKeyConstraints.insert(std::make_pair(c->name(), c));
+    databaseModel()->addChild(c);
+    return c;
+}

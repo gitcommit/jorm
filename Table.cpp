@@ -72,6 +72,7 @@ PreventValueConstraint* Table::preventValueConstraint(const std::string& name) c
 
 ForeignKeyConstraint* Table::addChild(ForeignKeyConstraint* v) {
     _foreignKeyConstraints.insert(std::make_pair(v->name(), v));
+    schema()->addChild(v);
     return foreignKeyConstraint(v->name());
 }
 

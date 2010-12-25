@@ -12,6 +12,7 @@
 
 #include "Sequence.h"
 #include "Table.h"
+#include "ForeignKeyConstraint.h"
 
 class DatabaseModel;
 
@@ -25,16 +26,19 @@ public:
     Sequence* addChild(Sequence* s);
     Table* addChild(Table* t);
     TableColumn* addChild(TableColumn* c);
+    ForeignKeyConstraint* addChild(ForeignKeyConstraint* c);
     SequenceMap sequences() const;
     TableMap tables() const;
     TableColumnMap tableColumns() const;
     Table* table(const std::string& name);
     Sequence* sequence(const std::string& name);
+    ForeignKeyConstraintMap foreignKeyConstraints() const { return _foreignKeyConstraints; }
     virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     SequenceMap _sequences;
     TableMap _tables;
     TableColumnMap _columns;
+    ForeignKeyConstraintMap _foreignKeyConstraints;
 };
 typedef std::map<std::string, Schema*> SchemaMap;
 typedef SchemaMap::const_iterator SchemaMapConstIterator;

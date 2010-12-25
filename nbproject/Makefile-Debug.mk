@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Component.o \
 	${OBJECTDIR}/UniqueConstraint.o \
 	${OBJECTDIR}/SequenceDefaultValueSource.o \
+	${OBJECTDIR}/CreateDatabaseVisitor.o \
 	${OBJECTDIR}/DebuggerVisitor.o \
 	${OBJECTDIR}/DatabaseConstantDefaultValueSource.o \
 	${OBJECTDIR}/InSchemaComponent.o \
@@ -144,6 +145,11 @@ ${OBJECTDIR}/SequenceDefaultValueSource.o: SequenceDefaultValueSource.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/SequenceDefaultValueSource.o SequenceDefaultValueSource.cpp
+
+${OBJECTDIR}/CreateDatabaseVisitor.o: CreateDatabaseVisitor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -I../../../usr/boost/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/CreateDatabaseVisitor.o CreateDatabaseVisitor.cpp
 
 ${OBJECTDIR}/DebuggerVisitor.o: DebuggerVisitor.cpp 
 	${MKDIR} -p ${OBJECTDIR}

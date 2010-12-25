@@ -33,6 +33,8 @@
     <itemPath>Component.h</itemPath>
     <itemPath>ComponentVisitor.cpp</itemPath>
     <itemPath>ComponentVisitor.h</itemPath>
+    <itemPath>CreateDatabaseVisitor.cpp</itemPath>
+    <itemPath>CreateDatabaseVisitor.h</itemPath>
     <itemPath>DataType.cpp</itemPath>
     <itemPath>DataType.h</itemPath>
     <itemPath>DatabaseConstant.cpp</itemPath>

@@ -12,6 +12,7 @@
 #include "Schema.h"
 #include "DataType.h"
 #include "DatabaseConstant.h"
+#include "ForeignKeyConstraint.h"
 
 class DatabaseModel : public Component {
 public:
@@ -24,6 +25,8 @@ public:
     DataType* addChild(DataType *t);
     Table* addChild(Table* t);
     TableColumn* addChild(TableColumn* c);
+    ForeignKeyConstraint* addChild(ForeignKeyConstraint* c);
+    ForeignKeyConstraintMap foreignKeyConstraints() const { return _foreignKeyConstraints; }
     Schema* schema(const std::string& name);
     Schema* createSchema(const std::string& name);
     DataType* createDataType(const std::string& name, const std::string& sqlName);
@@ -41,6 +44,7 @@ private:
     TableMap _tables;
     TableColumnMap _tableColumns;
     DatabaseConstantMap _databaseConstants;
+    ForeignKeyConstraintMap _foreignKeyConstraints;
 };
 typedef std::map<std::string, DatabaseModel*> DatabaseModelMap;
 typedef DatabaseModelMap::const_iterator DatabaseModelMapConstIterator;

@@ -108,3 +108,8 @@ DatabaseConstant* DatabaseModel::databaseConstant(const std::string& name) {
     BOOST_ASSERT(i != _databaseConstants.end());
     return i->second;
 }
+
+ForeignKeyConstraint* DatabaseModel::addChild(ForeignKeyConstraint* c) {
+    _foreignKeyConstraints.insert(std::make_pair(c->name(), c));
+    return c;
+}
