@@ -11,11 +11,9 @@
 #include <string>
 #include <vector>
 
-#include "UniqueConstraint.h"
-#include "PreventValueConstraint.h"
-
 #include "DatabaseModel.h"
 #include "DataType.h"
+#include "DatabaseConstant.h"
 #include "Schema.h"
 #include "Sequence.h"
 #include "Table.h"
@@ -24,6 +22,13 @@
 #include "UniqueConstraint.h"
 #include "PreventValueConstraint.h"
 #include "ForeignKeyConstraint.h"
+#include "SequenceDefaultValueSource.h"
+#include "DatabaseConstantDefaultValueSource.h"
+#include "UniqueConstraint.h"
+#include "PreventValueConstraint.h"
+#include "TextDefaultValueSource.h"
+#include "IntegerDefaultValueSource.h"
+#include "NumericDefaultValueSource.h"
 
 class ComponentVisitor {
 public:
@@ -33,6 +38,7 @@ public:
 
     virtual std::vector<std::string> perform(DatabaseModel* m) = 0;
     virtual std::vector<std::string> perform(DataType* t) = 0;
+    virtual std::vector<std::string> perform(DatabaseConstant* c) = 0;
     virtual std::vector<std::string> perform(Schema* s) = 0;
     virtual std::vector<std::string> perform(Sequence* s) = 0;
     virtual std::vector<std::string> perform(Table* t) = 0;
@@ -41,6 +47,11 @@ public:
     virtual std::vector<std::string> perform(UniqueConstraint* c) = 0;
     virtual std::vector<std::string> perform(PreventValueConstraint* c) = 0;
     virtual std::vector<std::string> perform(ForeignKeyConstraint* c) = 0;
+    virtual std::vector<std::string> perform(SequenceDefaultValueSource* s) = 0;
+    virtual std::vector<std::string> perform(DatabaseConstantDefaultValueSource* s) = 0;
+    virtual std::vector<std::string> perform(TextDefaultValueSource* s) = 0;
+    virtual std::vector<std::string> perform(IntegerDefaultValueSource* s) = 0;
+    virtual std::vector<std::string> perform(NumericDefaultValueSource* s) = 0;
 };
 
 #endif	/* COMPONENTVISITOR_H */

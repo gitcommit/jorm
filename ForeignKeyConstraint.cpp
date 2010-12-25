@@ -10,10 +10,13 @@
 #include "Table.h"
 #include "ComponentVisitor.h"
 
-ForeignKeyConstraint::ForeignKeyConstraint(Table* t, const std::string& name, Table* refT)
+ForeignKeyConstraint::ForeignKeyConstraint(Table* t, const std::string& name, Table* refT, TableColumn* localC, TableColumn* otherC)
 : TableConstraint(t, name), _referencedTable(0) {
     t->addChild(this);
     setReferencedTable(refT);
+    if ((0 != localC) && (0 != otherC)) {
+        add(localC, otherC);
+    }
 }
 
 ForeignKeyConstraint::ForeignKeyConstraint(const ForeignKeyConstraint& orig)

@@ -18,6 +18,7 @@ public:
     InSchemaComponent(const InSchemaComponent& orig);
     virtual ~InSchemaComponent();
     Schema* schema() const;
+    virtual std::string qualifiedName() const;
 private:
 
 };

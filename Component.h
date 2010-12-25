@@ -13,6 +13,8 @@
 #include <map>
 #include <ostream>
 
+#include <boost/assert.hpp>
+
 class ComponentVisitor;
 
 class Component {

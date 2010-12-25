@@ -5,6 +5,7 @@
  * Created on 20. Dezember 2010, 17:24
  */
 
+#include <iostream>
 #include <bits/stl_pair.h>
 
 #include "Table.h"
@@ -25,13 +26,15 @@ _foreignKeyConstraints(orig._foreignKeyConstraints) {
 Table::~Table() {
 }
 
-void Table::addChild(TableColumn* c) {
+TableColumn* Table::addChild(TableColumn* c) {
     _columns.insert(std::make_pair(c->name(), c));
     schema()->addChild(c);
+    return column(c->name());
 }
 
-void Table::addChild(UniqueConstraint* c) {
+UniqueConstraint* Table::addChild(UniqueConstraint* c) {
     _uniqueConstraints.insert(std::make_pair(c->name(), c));
+    return uniqueConstraint(c->name());
 }
 
 TableColumnMap Table::columns() const {
@@ -40,52 +43,94 @@ TableColumnMap Table::columns() const {
 
 TableColumn* Table::column(const std::string& name) const {
     TableColumnMapConstIterator i = _columns.find(name);
-    if (i == _columns.end()) {
-        return 0;
-    }
+    std::cout << "searching for " << name << " in " << qualifiedName() << std::endl;
+    BOOST_ASSERT(_columns.end() != i);
     return i->second;
 }
 
 UniqueConstraint* Table::uniqueConstraint(const std::string& name) const {
     UniqueConstraintMapConstIterator i = _uniqueConstraints.find(name);
-    if (i == _uniqueConstraints.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_uniqueConstraints.end() != i);
     return i->second;
 }
 
-void Table::addChild(TableConstraint* c) {
+TableConstraint* Table::addChild(TableConstraint* c) {
     _tableConstraints.insert(std::make_pair(c->name(), c));
+    return c;
 }
 
-void Table::addChild(PreventValueConstraint* c) {
+PreventValueConstraint* Table::addChild(PreventValueConstraint* c) {
     _preventValueConstraints.insert(std::make_pair(c->name(), c));
+    return preventValueConstraint(c->name());
 }
 
 PreventValueConstraint* Table::preventValueConstraint(const std::string& name) const {
     PreventValueConstraintMapConstIterator i = _preventValueConstraints.find(name);
-    if (i == _preventValueConstraints.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_preventValueConstraints.end() != i);
     return i->second;
 }
 
-void Table::addChild(ForeignKeyConstraint* v) {
+ForeignKeyConstraint* Table::addChild(ForeignKeyConstraint* v) {
     _foreignKeyConstraints.insert(std::make_pair(v->name(), v));
+    return foreignKeyConstraint(v->name());
 }
 
 ForeignKeyConstraint* Table::foreignKeyConstraint(const std::string& name) const {
     ForeignKeyConstraintMapConstIterator i = _foreignKeyConstraints.find(name);
-    if (i == _foreignKeyConstraints.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_foreignKeyConstraints.end() != i);
     return i->second;
-}
-
-std::string Table::qualifiedName() const {
-    return schema()->name() + "." + name();
 }
 
 std::vector<std::string> Table::visit(ComponentVisitor* v) {
     return v->perform(this);
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t) {
+    return addChild(new TableColumn(this, name, t));
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t, const std::string& defaultText) {
+    TableColumn* c = createTableColumn(name, t);
+    c->createDefaultValueSource(defaultText);
+    return c;
+}
+
+PrimaryKeyConstraint* Table::createPrimaryKeyConstraint(const std::string& name) {
+    return setPrimaryKeyConstraint(new PrimaryKeyConstraint(this, name));
+}
+
+UniqueConstraint* Table::createUniqueConstraint(const std::string& name) {
+    return addChild(new UniqueConstraint(this, name));
+}
+
+PreventValueConstraint* Table::createPreventValueConstraint(const std::string& name, const std::string& value) {
+    return addChild(new PreventValueConstraint(this, name, value));
+}
+
+ForeignKeyConstraint* Table::createForeignKeyConstraint(const std::string& name, TableColumn* localC, TableColumn* otherC) {
+    return addChild(new ForeignKeyConstraint(this, name, otherC->table(), localC, otherC));
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t, const double& defaultValue) {
+    TableColumn* c = createTableColumn(name, t);
+    c->createDefaultValueSource(defaultValue);
+    return c;
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t, const long long& defaultValue) {
+    TableColumn* c = createTableColumn(name, t);
+    c->createDefaultValueSource(defaultValue);
+    return c;
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t, DatabaseConstant* cnst) {
+    TableColumn* c = createTableColumn(name, t);
+    c->createDefaultValueSource(cnst);
+    return c;
+}
+
+TableColumn* Table::createTableColumn(const std::string& name, DataType* t, Sequence* s) {
+    TableColumn* c = createTableColumn(name, t);
+    c->createDefaultValueSource(s);
+    return c;
 }

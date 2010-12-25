@@ -8,6 +8,9 @@
 #ifndef JORM_REGISTER_BOOST_TYPES
 #define JORM_REGISTER_BOOST_TYPES
 
+#include "DatabaseConstantDefaultValueSource.h"
+
+
 #include <iostream>
 #include <map>
 #include <vector>
@@ -19,6 +22,7 @@
 
 #include "Component.h"
 #include "DatabaseModel.h"
+#include "DatabaseConstant.h"
 #include "Schema.h"
 #include "DataType.h"
 #include "Sequence.h"
@@ -27,12 +31,15 @@
 #include "PrimaryKeyConstraint.h"
 #include "UniqueConstraint.h"
 #include "PreventValueConstraint.h"
+#include "DefaultValueSource.h"
+#include "SequenceDefaultValueSource.h"
 
 typedef std::vector<std::string> StringVector;
 typedef StringVector::const_iterator StringVectorConstIterator;
 
 BOOST_TYPEOF_REGISTER_TYPE(Component)
 BOOST_TYPEOF_REGISTER_TYPE(DatabaseModel)
+BOOST_TYPEOF_REGISTER_TYPE(DatabaseConstant)
 BOOST_TYPEOF_REGISTER_TYPE(Schema)
 BOOST_TYPEOF_REGISTER_TYPE(DataType)
 BOOST_TYPEOF_REGISTER_TYPE(Schema)
@@ -42,6 +49,10 @@ BOOST_TYPEOF_REGISTER_TYPE(TableConstraint)
 BOOST_TYPEOF_REGISTER_TYPE(PrimaryKeyConstraint)
 BOOST_TYPEOF_REGISTER_TYPE(UniqueConstraint)
 BOOST_TYPEOF_REGISTER_TYPE(PreventValueConstraint)
+BOOST_TYPEOF_REGISTER_TYPE(DefaultValueSource)
+BOOST_TYPEOF_REGISTER_TYPE(SequenceDefaultValueSource)
+BOOST_TYPEOF_REGISTER_TYPE(DatabaseConstantDefaultValueSource)
+        
 /*void test() {
 
     ComponentMap mp;

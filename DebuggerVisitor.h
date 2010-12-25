@@ -17,6 +17,7 @@ public:
     virtual ~DebuggerVisitor();
 
     virtual std::vector<std::string> perform(DatabaseModel* m);
+    virtual std::vector<std::string> perform(DatabaseConstant* c);
     virtual std::vector<std::string> perform(DataType* t);
     virtual std::vector<std::string> perform(Schema* s);
     virtual std::vector<std::string> perform(Sequence* s);
@@ -26,6 +27,11 @@ public:
     virtual std::vector<std::string> perform(UniqueConstraint* c);
     virtual std::vector<std::string> perform(PreventValueConstraint* c);
     virtual std::vector<std::string> perform(ForeignKeyConstraint* c);
+    virtual std::vector<std::string> perform(SequenceDefaultValueSource* s);
+    virtual std::vector<std::string> perform(DatabaseConstantDefaultValueSource* s);
+    virtual std::vector<std::string> perform(TextDefaultValueSource* s);
+    virtual std::vector<std::string> perform(IntegerDefaultValueSource* s);
+    virtual std::vector<std::string> perform(NumericDefaultValueSource* s);
 private:
 
 };

@@ -39,18 +39,26 @@ OBJECTFILES= \
 	${OBJECTDIR}/Schema.o \
 	${OBJECTDIR}/PrimaryKeyConstraint.o \
 	${OBJECTDIR}/InDatabaseComponent.o \
+	${OBJECTDIR}/DatabaseConstant.o \
 	${OBJECTDIR}/DatabaseModel.o \
 	${OBJECTDIR}/InTableComponent.o \
 	${OBJECTDIR}/Component.o \
 	${OBJECTDIR}/UniqueConstraint.o \
+	${OBJECTDIR}/SequenceDefaultValueSource.o \
 	${OBJECTDIR}/DebuggerVisitor.o \
+	${OBJECTDIR}/DatabaseConstantDefaultValueSource.o \
 	${OBJECTDIR}/InSchemaComponent.o \
 	${OBJECTDIR}/CheckConstraint.o \
 	${OBJECTDIR}/ForeignKeyConstraint.o \
-	${OBJECTDIR}/Table.o \
 	${OBJECTDIR}/ComponentVisitor.o \
 	${OBJECTDIR}/DataType.o \
-	${OBJECTDIR}/TableConstraint.o
+	${OBJECTDIR}/DefaultValueSource.o \
+	${OBJECTDIR}/Table.o \
+	${OBJECTDIR}/NumericDefaultValueSource.o \
+	${OBJECTDIR}/TableConstraint.o \
+	${OBJECTDIR}/InTableColumnComponent.o \
+	${OBJECTDIR}/TextDefaultValueSource.o \
+	${OBJECTDIR}/IntegerDefaultValueSource.o
 
 
 # C Compiler Flags
@@ -107,6 +115,11 @@ ${OBJECTDIR}/InDatabaseComponent.o: InDatabaseComponent.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/InDatabaseComponent.o InDatabaseComponent.cpp
 
+${OBJECTDIR}/DatabaseConstant.o: DatabaseConstant.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DatabaseConstant.o DatabaseConstant.cpp
+
 ${OBJECTDIR}/DatabaseModel.o: DatabaseModel.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -127,10 +140,20 @@ ${OBJECTDIR}/UniqueConstraint.o: UniqueConstraint.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/UniqueConstraint.o UniqueConstraint.cpp
 
+${OBJECTDIR}/SequenceDefaultValueSource.o: SequenceDefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/SequenceDefaultValueSource.o SequenceDefaultValueSource.cpp
+
 ${OBJECTDIR}/DebuggerVisitor.o: DebuggerVisitor.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DebuggerVisitor.o DebuggerVisitor.cpp
+
+${OBJECTDIR}/DatabaseConstantDefaultValueSource.o: DatabaseConstantDefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DatabaseConstantDefaultValueSource.o DatabaseConstantDefaultValueSource.cpp
 
 ${OBJECTDIR}/InSchemaComponent.o: InSchemaComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -147,11 +170,6 @@ ${OBJECTDIR}/ForeignKeyConstraint.o: ForeignKeyConstraint.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/ForeignKeyConstraint.o ForeignKeyConstraint.cpp
 
-${OBJECTDIR}/Table.o: Table.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Table.o Table.cpp
-
 ${OBJECTDIR}/ComponentVisitor.o: ComponentVisitor.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -162,10 +180,40 @@ ${OBJECTDIR}/DataType.o: DataType.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DataType.o DataType.cpp
 
+${OBJECTDIR}/DefaultValueSource.o: DefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/DefaultValueSource.o DefaultValueSource.cpp
+
+${OBJECTDIR}/Table.o: Table.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Table.o Table.cpp
+
+${OBJECTDIR}/NumericDefaultValueSource.o: NumericDefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/NumericDefaultValueSource.o NumericDefaultValueSource.cpp
+
 ${OBJECTDIR}/TableConstraint.o: TableConstraint.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/TableConstraint.o TableConstraint.cpp
+
+${OBJECTDIR}/InTableColumnComponent.o: InTableColumnComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/InTableColumnComponent.o InTableColumnComponent.cpp
+
+${OBJECTDIR}/TextDefaultValueSource.o: TextDefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/TextDefaultValueSource.o TextDefaultValueSource.cpp
+
+${OBJECTDIR}/IntegerDefaultValueSource.o: IntegerDefaultValueSource.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/IntegerDefaultValueSource.o IntegerDefaultValueSource.cpp
 
 # Subprojects
 .build-subprojects:

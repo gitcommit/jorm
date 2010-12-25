@@ -23,3 +23,8 @@ InSchemaComponent::~InSchemaComponent() {
 Schema* InSchemaComponent::schema() const {
     return dynamic_cast<Schema*>(parent());
 }
+
+std::string InSchemaComponent::qualifiedName() const {
+    return schema()->name() + "." + name();
+}
+

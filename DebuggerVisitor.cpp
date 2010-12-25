@@ -32,6 +32,11 @@ std::vector<std::string> DebuggerVisitor::perform(DatabaseModel* m) {
         std::vector<std::string> b = i->second->visit(this);
         buf.insert(buf.end(), b.begin(), b.end());
     }
+    DatabaseConstantMap dbcm = m->databaseConstants();
+    for (DatabaseConstantMapConstIterator i = dbcm.begin(); i != dbcm.end(); ++i) {
+        std::vector<std::string> b = i->second->visit(this);
+        buf.insert(buf.end(), b.begin(), b.end());
+    }
     SchemaMap schemata = m->schemata();
     for (SchemaMapConstIterator i = schemata.begin(); i != schemata.end(); ++i) {
         std::vector<std::string> b = i->second->visit(this);
@@ -103,6 +108,10 @@ std::vector<std::string> DebuggerVisitor::perform(Table* t) {
 std::vector<std::string> DebuggerVisitor::perform(TableColumn* c) {
     std::vector<std::string> buf;
     buf.push_back("\t\t\tTC: " + c->toString());
+    if (c->hasDefaultValueSource()) {
+        std::vector<std::string> tmp = c->defaultValueSource()->visit(this);
+        buf.insert(buf.end(), tmp.begin(), tmp.end());
+    }
     return buf;
 }
 
@@ -133,5 +142,41 @@ std::vector<std::string> DebuggerVisitor::perform(ForeignKeyConstraint* c) {
 std::vector<std::string> DebuggerVisitor::perform(Sequence* s) {
     std::vector<std::string> buf;
     buf.push_back("\t\tSEQ: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(SequenceDefaultValueSource* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\t\t\t\tDefault: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(DatabaseConstant* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\tDBCONST: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(DatabaseConstantDefaultValueSource* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\t\t\t\tDefault: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(TextDefaultValueSource* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\t\t\t\tDefault: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(IntegerDefaultValueSource* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\t\t\t\tDefault: " + s->toString());
+    return buf;
+}
+
+std::vector<std::string> DebuggerVisitor::perform(NumericDefaultValueSource* s) {
+    std::vector<std::string> buf;
+    buf.push_back("\t\t\t\tDefault: " + s->toString());
     return buf;
 }

@@ -22,24 +22,33 @@ public:
     Table(Schema* s, const std::string& name);
     Table(const Table& orig);
     virtual ~Table();
-    void addChild(TableColumn* c);
-    void addChild(TableConstraint* c);
-    void addChild(UniqueConstraint* c);
-    void addChild(PreventValueConstraint* c);
-    void addChild(ForeignKeyConstraint* c);
+    TableColumn* createTableColumn(const std::string& name, DataType* t);
+    TableColumn* createTableColumn(const std::string& name, DataType* t, const std::string& defaultText);
+    TableColumn* createTableColumn(const std::string& name, DataType* t, const double& defaultValue);
+    TableColumn* createTableColumn(const std::string& name, DataType* t, const long long& defaultValue);
+    TableColumn* createTableColumn(const std::string& name, DataType* t, DatabaseConstant* c);
+    TableColumn* createTableColumn(const std::string& name, DataType* t, Sequence* s);
+    TableColumn* addChild(TableColumn* c);
+    TableConstraint* addChild(TableConstraint* c);
+    UniqueConstraint* addChild(UniqueConstraint* c);
+    PreventValueConstraint* addChild(PreventValueConstraint* c);
+    ForeignKeyConstraint* addChild(ForeignKeyConstraint* c);
+    ForeignKeyConstraint* createForeignKeyConstraint(const std::string& name, TableColumn* localC, TableColumn* otherC);
     TableColumn* column(const std::string& name) const;
+    UniqueConstraint* createUniqueConstraint(const std::string& name);
     UniqueConstraint* uniqueConstraint(const std::string& name) const;
     PreventValueConstraint* preventValueConstraint(const std::string& name) const;
     TableConstraintMap tableConstraints() const { return _tableConstraints; }
     TableColumnMap columns() const;
     UniqueConstraintMap uniqueConstraints() const { return _uniqueConstraints; }
+    PreventValueConstraint* createPreventValueConstraint(const std::string& name, const std::string& value);
     PreventValueConstraintMap preventValueConstraints() const { return _preventValueConstraints; }
     ForeignKeyConstraintMap foreignKeyConstraints() const { return _foreignKeyConstraints; }
     bool hasPrimaryKeyConstraint() const { return (0 != _primaryKeyConstraint); }
-    void setPrimaryKeyConstraint(PrimaryKeyConstraint* pk) { _primaryKeyConstraint = pk; }
+    PrimaryKeyConstraint* setPrimaryKeyConstraint(PrimaryKeyConstraint* pk) { _primaryKeyConstraint = pk; }
+    PrimaryKeyConstraint* createPrimaryKeyConstraint(const std::string& name);
     PrimaryKeyConstraint* primaryKeyConstraint() const { return _primaryKeyConstraint; }
     ForeignKeyConstraint* foreignKeyConstraint(const std::string& name) const;
-    virtual std::string qualifiedName() const;
     virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     TableColumnMap _columns;

@@ -16,7 +16,7 @@
 
 class ForeignKeyConstraint: public TableConstraint {
 public:
-    ForeignKeyConstraint(Table* t, const std::string& name, Table* otherT);
+    ForeignKeyConstraint(Table* t, const std::string& name, Table* otherT, TableColumn* localC, TableColumn* otherC);
     ForeignKeyConstraint(const ForeignKeyConstraint& orig);
     virtual ~ForeignKeyConstraint();
     void setReferencedTable(Table* t);

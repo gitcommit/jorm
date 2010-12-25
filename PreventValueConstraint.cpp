@@ -10,6 +10,8 @@
 #include "Table.h"
 #include "ComponentVisitor.h"
 
+#include <sstream>
+
 PreventValueConstraint::PreventValueConstraint(Table* t, const std::string& name, const std::string& value)
 : CheckConstraint(t, name), _value(value) {
     t->addChild(this);
@@ -35,5 +37,7 @@ std::vector<std::string> PreventValueConstraint::visit(ComponentVisitor* v) {
 }
 
 std::string PreventValueConstraint::toString() const {
-    return name() + ": " + joinedColumnNames() + ": !" + value();
+    std::stringstream ss;
+    ss << "'" << value() << "'";
+    return name() + ": " + joinedColumnNames() + ": prevent: " + ss.str();
 }

@@ -20,13 +20,16 @@ public:
     Schema(DatabaseModel* m, const std::string& name);
     Schema(const Schema& orig);
     virtual ~Schema();
-    void addChild(Sequence* s);
-    void addChild(Table* t);
-    void addChild(TableColumn* c);
+    Sequence* createSequence(const std::string& name);
+    Table* createTable(const std::string& name);
+    Sequence* addChild(Sequence* s);
+    Table* addChild(Table* t);
+    TableColumn* addChild(TableColumn* c);
     SequenceMap sequences() const;
     TableMap tables() const;
     TableColumnMap tableColumns() const;
     Table* table(const std::string& name);
+    Sequence* sequence(const std::string& name);
     virtual std::vector<std::string> visit(ComponentVisitor* v);
 private:
     SequenceMap _sequences;

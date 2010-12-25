@@ -22,13 +22,15 @@ Schema::Schema(const Schema& orig)
 Schema::~Schema() {
 }
 
-void Schema::addChild(Sequence* s) {
+Sequence* Schema::addChild(Sequence* s) {
     _sequences.insert(std::make_pair(s->name(), s));
+    return sequence(s->name());
 }
 
-void Schema::addChild(Table* t) {
+Table* Schema::addChild(Table* t) {
     _tables.insert(std::make_pair(t->name(), t));
     databaseModel()->addChild(t);
+    return table(t->name());
 }
 
 SequenceMap Schema::sequences() const {
@@ -41,15 +43,14 @@ TableMap Schema::tables() const {
 
 Table* Schema::table(const std::string& name) {
     TableMapConstIterator i = _tables.find(name);
-    if (i == _tables.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_tables.end() != i);
     return i->second;
 }
 
-void Schema::addChild(TableColumn* c) {
+TableColumn* Schema::addChild(TableColumn* c) {
     _columns.insert(std::make_pair(c->qualifiedName(), c));
     databaseModel()->addChild(c);
+    return c;
 }
 
 TableColumnMap Schema::tableColumns() const {
@@ -65,3 +66,17 @@ std::vector<std::string> Schema::visit(ComponentVisitor* v) {
     return s;
 }
 */
+
+Sequence* Schema::createSequence(const std::string& name) {
+    return addChild(new Sequence(this, name));
+}
+
+Table* Schema::createTable(const std::string& name) {
+    return addChild(new Table(this, name));
+}
+
+Sequence* Schema::sequence(const std::string& name) {
+    SequenceMapConstIterator i = _sequences.find(name);
+    BOOST_ASSERT(_sequences.end() != i);
+    return i->second;
+}

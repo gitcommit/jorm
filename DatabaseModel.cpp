@@ -13,6 +13,8 @@
 #include "DatabaseModel.h"
 
 #include "Schema.h"
+#include "DatabaseConstant.h"
+
 #include "ComponentVisitor.h"
 
 #include <iostream>
@@ -36,36 +38,44 @@ DataTypeMap DatabaseModel::dataTypes() const {
     return _dataTypes;
 }
 
-void DatabaseModel::addChild(Schema* s) {
+Schema* DatabaseModel::addChild(Schema* s) {
     _schemata.insert(std::make_pair(s->name(), s));
+    return schema(s->name());
 }
 
-void DatabaseModel::addChild(DataType* t) {
+Schema* DatabaseModel::createSchema(const std::string& name) {
+    return addChild(new Schema(this, name));
+}
+
+DataType* DatabaseModel::addChild(DataType* t) {
     _dataTypes.insert(std::make_pair(t->name(), t));
+    return dataType(t->name());
+}
+
+DataType* DatabaseModel::createDataType(const std::string& name, const std::string& sqlName) {
+    return addChild(new DataType(this, name, sqlName));
 }
 
 Schema* DatabaseModel::schema(const std::string& name) {
     SchemaMapConstIterator i = _schemata.find(name);
-    if (i == _schemata.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_schemata.end() != i);
     return i->second;
 }
 
 DataType* DatabaseModel::dataType(const std::string& name) {
     DataTypeMapConstIterator i = _dataTypes.find(name);
-    if (i == _dataTypes.end()) {
-        return 0;
-    }
+    BOOST_ASSERT(_dataTypes.end() != i);
     return i->second;
 }
 
-void DatabaseModel::addChild(Table* t) {
+Table* DatabaseModel::addChild(Table* t) {
     _tables.insert(std::make_pair(t->qualifiedName(), t));
+    return t;
 }
 
-void DatabaseModel::addChild(TableColumn* c) {
+TableColumn* DatabaseModel::addChild(TableColumn* c) {
     _tableColumns.insert(std::make_pair(c->namePath(), c));
+    return c;
 }
 
 TableMap DatabaseModel::tables() const {
@@ -78,4 +88,23 @@ TableColumnMap DatabaseModel::tableColumns() const {
 
 std::vector<std::string> DatabaseModel::visit(ComponentVisitor* v) {
     return v->perform(this);
+}
+
+DatabaseConstant* DatabaseModel::addChild(DatabaseConstant* c) {
+    _databaseConstants.insert(std::make_pair(c->name(), c));
+    return databaseConstant(c->name());
+}
+
+DatabaseConstant* DatabaseModel::createDatabaseConstant(const std::string& name, DataType* t) {
+    return addChild(new DatabaseConstant(this, name, t));
+}
+
+DatabaseConstantMap DatabaseModel::databaseConstants() const {
+    return _databaseConstants;
+}
+
+DatabaseConstant* DatabaseModel::databaseConstant(const std::string& name) {
+    DatabaseConstantMapConstIterator i = _databaseConstants.find(name);
+    BOOST_ASSERT(i != _databaseConstants.end());
+    return i->second;
 }

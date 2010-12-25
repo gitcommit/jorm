@@ -35,18 +35,30 @@
     <itemPath>ComponentVisitor.h</itemPath>
     <itemPath>DataType.cpp</itemPath>
     <itemPath>DataType.h</itemPath>
+    <itemPath>DatabaseConstant.cpp</itemPath>
+    <itemPath>DatabaseConstant.h</itemPath>
+    <itemPath>DatabaseConstantDefaultValueSource.cpp</itemPath>
+    <itemPath>DatabaseConstantDefaultValueSource.h</itemPath>
     <itemPath>DatabaseModel.cpp</itemPath>
     <itemPath>DatabaseModel.h</itemPath>
     <itemPath>DebuggerVisitor.cpp</itemPath>
     <itemPath>DebuggerVisitor.h</itemPath>
+    <itemPath>DefaultValueSource.cpp</itemPath>
+    <itemPath>DefaultValueSource.h</itemPath>
     <itemPath>ForeignKeyConstraint.cpp</itemPath>
     <itemPath>ForeignKeyConstraint.h</itemPath>
     <itemPath>InDatabaseComponent.cpp</itemPath>
     <itemPath>InDatabaseComponent.h</itemPath>
     <itemPath>InSchemaComponent.cpp</itemPath>
     <itemPath>InSchemaComponent.h</itemPath>
+    <itemPath>InTableColumnComponent.cpp</itemPath>
+    <itemPath>InTableColumnComponent.h</itemPath>
     <itemPath>InTableComponent.cpp</itemPath>
     <itemPath>InTableComponent.h</itemPath>
+    <itemPath>IntegerDefaultValueSource.cpp</itemPath>
+    <itemPath>IntegerDefaultValueSource.h</itemPath>
+    <itemPath>NumericDefaultValueSource.cpp</itemPath>
+    <itemPath>NumericDefaultValueSource.h</itemPath>
     <itemPath>PreventValueConstraint.cpp</itemPath>
     <itemPath>PreventValueConstraint.h</itemPath>
     <itemPath>PrimaryKeyConstraint.cpp</itemPath>
@@ -56,12 +68,16 @@
     <itemPath>Schema.h</itemPath>
     <itemPath>Sequence.cpp</itemPath>
     <itemPath>Sequence.h</itemPath>
+    <itemPath>SequenceDefaultValueSource.cpp</itemPath>
+    <itemPath>SequenceDefaultValueSource.h</itemPath>
     <itemPath>Table.cpp</itemPath>
     <itemPath>Table.h</itemPath>
     <itemPath>TableColumn.cpp</itemPath>
     <itemPath>TableColumn.h</itemPath>
     <itemPath>TableConstraint.cpp</itemPath>
     <itemPath>TableConstraint.h</itemPath>
+    <itemPath>TextDefaultValueSource.cpp</itemPath>
+    <itemPath>TextDefaultValueSource.h</itemPath>
     <itemPath>UniqueConstraint.cpp</itemPath>
     <itemPath>UniqueConstraint.h</itemPath>
   </logicalFolder>
