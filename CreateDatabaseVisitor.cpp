@@ -27,7 +27,17 @@ CreateDatabaseVisitor::~CreateDatabaseVisitor() {
 std::vector<std::string> CreateDatabaseVisitor::perform(DatabaseModel* m) {
     std::vector<std::string> buf;
     buf.push_back(toComment("CREATE DATABASE " + m->name() + ";"));
-    
+
+    DataTypeMap dataTypes = m->dataTypes();
+    for (DataTypeMapConstIterator i = dataTypes.begin(); i != dataTypes.end(); i++) {
+        std::vector<std::string> b = i->second->visit(this);
+        buf.insert(buf.end(), b.begin(), b.end());
+    }
+    DatabaseConstantMap constants = m->databaseConstants();
+    for (DatabaseConstantMapConstIterator i = constants.begin(); i != constants.end(); ++i) {
+        std::vector<std::string> b = i->second->visit(this);
+        buf.insert(buf.end(), b.begin(), b.end());
+    }
     SchemaMap schemata = m->schemata();
     for (SchemaMapConstIterator i = schemata.begin(); i != schemata.end(); ++i) {
         std::vector<std::string> b = i->second->visit(this);
@@ -45,7 +55,7 @@ std::vector<std::string> CreateDatabaseVisitor::perform(DatabaseModel* m) {
 
 std::vector<std::string> CreateDatabaseVisitor::perform(DataType* t) {
     std::vector<std::string> buf;
-    buf.push_back("\tDBT: " + t->toString());
+    buf.push_back(toComment("Data Type: " + t->toString()));
     return buf;
 }
 
@@ -153,7 +163,7 @@ std::vector<std::string> CreateDatabaseVisitor::perform(SequenceDefaultValueSour
 
 std::vector<std::string> CreateDatabaseVisitor::perform(DatabaseConstant* s) {
     std::vector<std::string> buf;
-    buf.push_back("\tDBCONST: " + s->toString());
+    buf.push_back(toComment("Database Constant: " + s->toString()));
     return buf;
 }
 
